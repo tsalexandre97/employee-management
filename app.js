@@ -36,11 +36,28 @@ app.get('/users', (req, res) => {
             },
         ]
     }
-    res.json(data)
+    return res
+        .status(200)    
+        .json(data)
 })
 
 // GET method user individual
 app.get('/users/:id', (req, res) => {
+    res.send(req.params)
+})
+
+// POST method user
+app.post('/users', (req, res) => {
+    res.send("Cria novo usuário")
+})
+
+// PUT method user
+app.put('/users/:id', (req, res) => {
+    res.send(req.params)
+})
+
+// DELETE method user
+app.delete('/users/:id', (req, res) => {
     res.send(req.params)
 })
 
