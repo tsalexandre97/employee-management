@@ -1,6 +1,7 @@
-const app = require('../config/express')()
-const port = app.get('port')
+import express from 'express'
+const app = express();
+import {event} from './api/routes/event.js'
 
-app.listen(port, () => {
-    console.log(`Servidor rodando: http://localhost:${port}`)
-})
+app.use('/', event)
+
+export {app}
