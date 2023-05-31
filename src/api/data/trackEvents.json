@@ -1,0 +1,22 @@
+{
+    "employee": [
+        {
+            "id": 1,
+            "name": "Mané Garrincha",
+            "photo": "https://bonifacio.net.br/wp-content/uploads/201031-Mane-Garrincha.jpg",
+            "status": "active"
+        },
+        {
+            "id": 2,
+            "name": "Pele",
+            "photo": "https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/bltb39bbf02afd7486f/639ce77ef530196d7f93a9f4/Pel%C3%A9_1970.jpg?auto=webp&format=pjpg&width=3840&quality=60",
+            "status": "active"
+        },
+        {
+            "id": 3,
+            "name": "Ronaldinho Gaúcho",
+            "photo": "https://fcb-abj-pre.s3.amazonaws.com/img/jugadors/763_ronaldinho.jpg",
+            "status": "active"
+        }
+    ]
+}
