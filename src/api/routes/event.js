@@ -1,45 +1,47 @@
-import express from "express"
-const { default: employees } = await import("../data/trackEvents.json", {
-    assert: {
-        type: "json"
-    }
-})
+require('dotenv').config();
+const express = require('express');
 
-const event = express()
+const app = express();
+const PORT = process.env.PORT;
 
-event.route('/users')
-    .get((req,res) => {
-        res.status(200)
-        res.json(employees)
-    })
-    .post((req,res) => {
-        res.json({message: "Success"})
-    })
+//Our Database Config
+const DB_HOST = process.env.DB_HOST;
+const DB_DATABASE = process.env.DB_DATABASE;
+const DB_USERNAME = process.env.DB_USERNAME;
+const DB_PASSWORD = process.env.DB_PASSWORD;
 
-event.route('/users/:id')
-    .get((req,res) => {
-        res.send('GET Individual User')
-    })
-    .put((req,res) => {
-        res.send('PUT Individual User')
-    })
-    .delete((req,res) => {
-        res.send('DELETE Individual User')
-    })  
-
-export {event}
+//Connection to MySQL database
 
 
-
-// GET
-// app.get('/users/:id', (req, res) => {
-//     const id = req.params.id
-
-//     const foundEmployee = employees.find(employee => employee.id == id)
-//     console.log(foundEmployee)
-//     if(foundEmployee){
-//         return res.json(foundEmployee)
-//     }
-
-//     res.status(404).send("Employee not found!")
-// })
+//Get all employees from the database
+app.get("/employees", (req, res) => {
+    db.query("SELECT * from employees", (error, data) => {
+      if (error) {
+        return res.json({ status: "ERROR", error });
+      }
+  
+      return res.json(data);
+    });
+  });
+//Add new empoyee to the database
+// app.post('employees', function (req, res) {});
+//Get single employee by id from the database
+app.get('employees/details/:id', function (req, res) {});
+//Update single employee by id from the database
+app.put('employees/update/:id', function (req, res) {});
+//Delete single employee by id from the database
+app.delete('employees/delete/:id', function (req, res) {});
+app.listen(PORT, function() {
+ console.log('Restful API is running on PORT 3000');
+});
+app.post("employees", function (req, res) {
+    let newEmployee = { ...req.body };
+  
+    db.query("INSERT INTO employees SET ?", newEmployee, (error, result) => {
+      if (error) {
+        return res.status(500).json({ status: "ERROR", error });
+      }
+  
+      return res.json({ status: "SUCCESS" });
+    });
+  });
